@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>直播页</title>
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+    <script src="https://unpkg.com/video.js/dist/video.js"></script>
+    <script src="./js/video.min.js"></script>
+    <link href="./css/video-js.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="./js/videoplay.js"></script>
+</head>
+
+
+<body>
+    <div class="openFlashTips" style="width:300px;position:absolute;top:20px;left:225px;z-Index:9999;color:white">视频无法正常播放，请点击下方启用flash</div>
+    <!-- 顶栏 -->
+    <div class="topdock">
+        <span class="appname">CoursePro</span>
+        <span class="course-info">Corese Demo</span>
+    </div>
+
+    <!-- 视频播放以及聊天区域 -->
+    <div class="mainzone">
+        <!-- 视频播放 -->
+        <div class="video-zone">
+            <video id="video" style="color:black;" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" autoplay preload="auto" controls width="auto" height="680" align="middle" data-setup="{}">
+                <source src='rtmp://60.205.3.122:1935/live/' type='rtmp/flv'/>
+            </video>
+            <style>
+                video{
+                    object-fit: fill;
+                }
+            </style>
+            <div class="vjs-control-bar"></div>
+
+    <!-- vidojs script区域 -->
+            <script>
+                var options={
+                    controlBar: { 
+                        volumeMenuButton: { 
+                            inline: false, 
+                            vertical: true     
+                        } 
+                    } 
+                };
+                videojs("video",options);
+            </script>
+
+
+        </div>
+
+        <!-- 聊天区域 -->
+        <div class="talk-room">
+            <!-- 消息显示区域 -->
+            <div class="view-zone">
+            </div>
+
+            <!-- 消息输入区域 -->
+            <div class="input-zone">
+
+            </div>
+        </div>
+    
+    </div>
+
+
+    
+    <embed width="300" height="70" class="openFlash" style="position:absolute;top:130px;left:225px;z-Index:9999;" type="application/x-shockwave-flash">
+
+    
+
+
+
+
+
+    <!-- 处理是否有flash -->
+<script type="text/javascript" language="JavaScript">
+    function flashChecker() {
+        var hasFlash = 0;         //是否安装了flash
+        var flashVersion = 0; //flash版本
+        var isIE = /*@cc_on!@*/0;      //是否IE浏览器
+
+        if (isIE) {
+            var swf = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+            if (swf) {
+                hasFlash = 1;
+                VSwf = swf.GetVariable("$version");
+                flashVersion = parseInt(VSwf.split(" ")[1].split(",")[0]);
+            }
+        } else {
+            if (navigator.plugins && navigator.plugins.length > 0) {
+                var swf = navigator.plugins["Shockwave Flash"];
+                if (swf) {
+                    hasFlash = 1;
+                    var words = swf.description.split(" ");
+                    for (var i = 0; i < words.length; ++i) {
+                        if (isNaN(parseInt(words[i]))) continue;
+                        flashVersion = parseInt(words[i]);
+                    }
+                }
+            }
+        }
+        return {f: hasFlash, v: flashVersion};
+    }
+
+    var fls = flashChecker();
+    var s = "";
+    if (fls.f) {
+        document.getElementsByClassName("openFlash")[0].style.display = "none";
+        document.getElementsByClassName("openFlashTips")[0].style.display = "none";
+//        document.write("您安装了flash,当前flash版本为: " + fls.v + ".x");
+    }
+    else {
+        document.getElementsByClassName("openFlash")[0].style.display = "block";
+        document.getElementsByClassName("openFlashTips")[0].style.display = "block";
+//        document.write("您没有安装flash");
+    }
+</script>
+</body>
+</html>

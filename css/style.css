@@ -1,0 +1,82 @@
+@import "./video-js.min.css";
+
+html, body {
+    margin:0; 
+    padding:0; 
+    width:100%; 
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    /* overflow-y: hidden; */
+    color:white;
+}
+
+.topdock{
+    align-items: flex-start;
+    width:100%;
+    height:5%;
+    background-image: linear-gradient(120deg,#3498db,#5e44ad);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: lightslategray 3px solid;
+    /* border-bottom: 3px solid #adadff; */
+    /* border-radius: 2em; */
+    /* padding-left: 0.5%;
+    padding-right: 0.5%; */
+}
+
+span{
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+/* mainzone */
+.mainzone{
+    /* display:flex; */
+    width:100%;
+    height:auto;
+    flex-direction: row;
+    background-color:whitesmoke;
+    display:flex;
+    justify-content: space-between;
+}
+
+.video-zone{
+    width:80%;
+    height:100%;
+    margin:0;
+    display:flex;
+    justify-content: flex-start;
+    border-bottom: 10px;
+}
+
+.video{
+    
+    height:100%;
+    width:100%;
+    border: 0 solid;
+    color:whitesmoke;
+    /* margin:2%; */
+}
+
+/* sidebar  */
+.talk-room {
+    width: 20%;
+    height:100%;
+    /* margin-right: -10%; */
+    background-color: rgb(100, 100, 92);
+    overflow: hidden;
+    transition: 0.8s all;
+}
+
+.btn {
+    float: right;
+    padding: 0 10px;
+    font-size: 40px;
+    text-decoration: none;
+    color: #2c3e50;
+    font-family: Ionicons;
+    cursor: pointer;
+}
